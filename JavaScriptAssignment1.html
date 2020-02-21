@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Javascript Assignment 1</title>
+    <meta name="Keywords" content="HTML, Javascript, forms, input, sample">
+    <meta name="description" content="Assignment 1 of Javascript">
+    <script>
+        function addOption(selectbox, text, value) {
+            var optn = document.createElement("OPTION");
+            optn.text = text;
+            optn.value = value;
+            selectbox.options.add(optn);
+        }
+
+        function addOption_list() {
+            var qual = new Array("Diploma", "Under Graduate", "Post Graduate", "PHD", "Others");
+            for (var i = 0; i < qual.length; ++i) {
+                addOption(document.drop_list.qual_list, qual[i], qual[i]);
+
+            }
+            var exp = new Array("< 1 year", "1 to 5 years", "5 to 10 years", "10+ years");
+            for (var j = 0; j < exp.length; ++j) {
+                addOption(document.drop_list.exp_list, exp[j], exp[j]);
+
+            }
+        }
+        var document = window.document;
+
+        function Employee(firstname, lastname, email, number, address, username, password, gender, qualy, expr, programmingLang) {
+            'use strict';
+            this.FirstNAme = firstname;
+            this.LastName = lastname;
+            this.Email = email;
+            this.Number = number;
+            this.Address = address;
+            this.Username = username;
+            this.Password = password;
+            this.Gender = gender;
+            this.Qualification = qualy;
+            this.Experience = expr;
+            this.CodingLanguage = programmingLang;
+        }
+
+        function dataLog() {
+            'use strict';
+            var first_name = document.getElementById("firstname").value,
+                last_name = document.getElementById("lastname").value,
+                email_address = document.getElementById("emailaddress").value,
+                contact_number = document.getElementById("cn").value,
+                address = document.getElementById("addr").value,
+                user_name = document.getElementById("uname").value,
+                password = document.getElementById("passwd").value,
+                gender = document.getElementById("male"),
+                qualification = document.getElementById("qual_list"),
+                experience = document.getElementById("exp_list"),
+                programming_languages;
+
+            if (gender.checked) {
+                gender = "male";
+            } else {
+                gender = "female";
+            }
+            qualification = qualification.option[qualification.selectedIndex].value;
+            experience = experience.option[experience.selectedIndex].value;
+
+            for (var i = 0; i < 5; i = i + 1) {
+                var a = document.getElementById("code" + (i + 1));
+                if (a.checked) {
+                    programming_languages = programming_languages + LanguageArray[i].LanguageName;
+                }
+            }
+
+            var print = new Employee(first_name, last_name, email_address, contact_number,
+                address, user_name, password, gender, qualification, experience, programming_languages);
+            window.console.log(print);
+        }
+    </script>
+
+
+
+    <script>
+    </script>
+</head>
+
+<body onLoad="addOption_list()" ;>
+
+    <form name="drop_list" id="frm1" method="post" action="index.html">
+        First Name:<br>
+        <input type="text" id="firstname" name="firstname"></input><br /><br /> Last Name:<br>
+        <input type="text" id="lastname" name="lastname"></input><br /><br /> Email:
+        <br />
+        <input type="email" id="emailaddress" name="email"></input><br /><br /> Contact Number:<br />
+        <input type="text" id="cn" name="cn"></input><br /><br /> Address:
+        <br /> <textarea type="textarea" id="addr" name="addr"></textarea><br /><br /> Username:<br>
+        <input type="text" id="uname" name="uname"></input><br /><br /> Password:<br>
+        <input type="password" id="passwd" name="passwd"></input><br /><br /> Gender:
+        <br /> <input type="radio" id="male" name="gender" value="male">Male</input><br>
+        <input type="radio" id="female" name="gender" value="female">Female</input><br /><br /> Qualification:
+        <br />
+        <SELECT NAME="qual_list" id="qual_list">
+            <Option value="" >--None--</option>
+            </SELECT><br /><br /> Experience:
+        <br />
+        <SELECT NAME="exp_list" id="exp_list">
+            <Option value="" >--None--</option>
+                
+        </SELECT><br /><br /> Coding Languages:<br /> <input type="checkbox" id="lang1" name="lang" value="cncplusplus">C/C++</input><br>
+        <input type="checkbox" id="lang2" name="lang" value="java" checked>Java</input><br>
+        <input type="checkbox" id="lang3" name="lang" value="csharp" checked>C#</input><br>
+        <input type="checkbox" id="lang4" name="lang" value="php">PHP</input><br>
+        <input type="checkbox" id="lang5" name="lang" value="python">Python</input><br>
+        <br /> <input type="submit" name="submit" id="btn_id" value="Submit" onclick="dataLog()" />
+    </form>
+
+
+</body>
+
+</html>
